@@ -21,7 +21,7 @@ from pyked.chemked import ChemKED, DataPoint
 
 # Local imports
 from .utils import units
-from .autoignition_simulation import Simulation
+from .autoignition_simulation import AutoIgnitionSimulation as Simulation
 
 min_deviation = 0.10
 """float: minimum allowable standard deviation for experimental data"""
