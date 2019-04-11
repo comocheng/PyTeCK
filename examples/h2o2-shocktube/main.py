@@ -11,4 +11,5 @@ evaluate_model(model_name='h2o2.cti',
                data_path='data',
                model_path='models',
                results_path='results',
+               print_results=True,
 )
