@@ -19,18 +19,17 @@ except ImportError:
 
 from pyked.chemked import ChemKED, DataPoint
 
-"would need to import Ben's pyked stuff"
-
 # Local imports
 from .utils import units
+<<<<<<< HEAD:pyteck/new_eval_model.py
 from .autoignition_simulation import AutoignitionSimulation
 #from .jsr_simulation import JSRSimulation
+=======
+from .jsr_simulation import JSRSimulation as Simulation
+>>>>>>> 66972b64bc6038d7825f5ce71bcfd3aa0fd33e08:pyteck/jsr_eval_model.py
 
 min_deviation = 0.10
 """float: minimum allowable standard deviation for experimental data"""
-
-"decide between JSR/ID?"
-
 
 def create_simulations(dataset, properties):
     """Set up individual simulations for each ignition delay value.
@@ -143,6 +142,9 @@ def estimate_std_dev(indep_variable, dep_variable):
     return standard_dev
 
 
+
+"Not sure this def is needed as only concentration/temperature changes? @ below"
+
 def get_changing_variable(cases):
     """Identify variable changing across multiple cases.
 
@@ -192,6 +194,12 @@ def get_changing_variable(cases):
                     ]
     return variable
 
+
+
+"""thoughts: 
+
+1. ideally inchi/species identifies are listed in yaml file/csv? so spec_keys_file may be unnecessary
+2."""
 
 def evaluate_model(model_name, spec_keys_file, dataset_file,
                    data_path='data', model_path='models',
@@ -279,7 +287,7 @@ def evaluate_model(model_name, spec_keys_file, dataset_file,
         #############################################
         # Determine standard deviation of the dataset
         #############################################
-        ign_delay = [case.ignition_delay.to('second').value.magnitude
+        species_profile = [case.ignition_delay.to('second').value.magnitude
                      if hasattr(case.ignition_delay, 'value')
                      else case.ignition_delay.to('second').magnitude
                      for case in properties.datapoints
